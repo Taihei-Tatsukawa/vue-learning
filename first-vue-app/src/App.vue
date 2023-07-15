@@ -1,20 +1,19 @@
 <script setup>
-const users = [
-  { id: 1, name: 'John Doe', email: 'john@test.com', admin: true },
-  { id: 2, name: 'Jane Doe', email: 'jane@example.com', admin: false },
-  { id: 3, name: 'Kevin MacDonald', email: 'kevin@test.com', admin: false },
-];
+import Hello from './components/Hello.vue';
 </script>
 
 <template>
-  <h1>Vue 入門</h1>
-  <div v-for="user in users" :key="user.id">
-    <div v-if="!user.admin">
-      <ul>
-        <li v-for="(value, name) in user" :key="value">{{ name }}:{{ value }}</li>
-      </ul>
-    </div>
-  </div>
+  <h1>Vue</h1>
+  <Hello message="Propsの使い方" name="Jonh" />
 </template>
 
-<style></style>
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
