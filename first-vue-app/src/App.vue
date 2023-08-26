@@ -1,23 +1,32 @@
 <script setup>
-  import { ref } from 'vue'
-  import MyHello from './components/MyHello.vue'
-  import MyInput from './components/MyInput.vue'
+  import { computed, ref } from 'vue'
+  import MyKyoto from './components/MyKyoto.vue'
+  import MyTokyo from './components/MyTokyo.vue'
 
-  const helloName = ref('Vue')
-  const name = ref('John Doe')
-  const address = ref('')
+  const city = ref('tokyo')
+
+  const tabs = {
+    tokyo: MyTokyo,
+    kyoto: MyKyoto,
+  }
+  const tab = computed(() => tabs[city.value])
 </script>
 
 <template>
   <h1>Vue！</h1>
-  <MyHello
-    :name="helloName"
-    @change-name-event="helloName = $event"
-  />
-  <p>name: {{ name }}</p>
-  <p>address: {{ address }}</p>
-  <MyInput v-model="name" />
-  <MyInput v-model="address" />
+  <div class="">
+    <button
+      class="flex bg-slate-200 text-2xl"
+      @click="city = 'tokyo'"
+    >
+      東京
+    </button>
+    <button @click="city = 'kyoto'">京都</button>
+  </div>
+  <keep-alive>
+    <component :is="tab"></component>
+  </keep-alive>
+  <my-kyoto></my-kyoto>
 </template>
 
 <style>
